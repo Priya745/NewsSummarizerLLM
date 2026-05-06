@@ -1,19 +1,21 @@
 from langchain.chat_models import init_chat_model
-
-
-
+from dotenv import load_dotenv
+import os
 import requests
 from send_email import send_email
 
-api_key = "5294a4636d034d439a4cfa0d800f7f8a"
-GOOGLE_API_KEY = "AIzaSyAyCaaYlr9QNMLWY9DpLBdX37Q6u7Gyclw"
+
+load_dotenv()
+
+GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+NEWS_API_KEY= os.getenv("NEWS_API_KEY")
 
 url = (
     "https://newsapi.org/v2/top-headlines?"
     "category=business&"
     "language=en&"
     "pageSize=8&"
-    "apiKey=" + api_key
+    "apiKey=" + NEWS_API_KEY
 )
 # Make request
 r = requests.get(url)
